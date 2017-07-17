@@ -1,14 +1,14 @@
-# 基于gulp的自动化构建 — “前端静态资源的版本管理”
-在静态静态资源版本管理方面，以前的使用方案：
+# gulp构建之 “前端静态资源的版本管理”
+以前的传统方案：
 后端 将前端静态资源路径作为参数带入某个处理方法中，然后读取真个文件内容。文件名追加md5，输出到指定目录（runtime/statics根目录下）。
 弊端：前端更改某个文件（js/css/...）,如果不做任何操作去刷新页面，蛋痛的事情发生了，更改的代码没生效，页面缓存了上一次已完成加载的静态资源。怎么办？手动去后端指定目录去手动删除生成的文件，解除缓存。
 
-目前已实现的解决方案:
+我们需要的解决方案:
 在构建阶段计算静态资源的hash值，并将该值已参数的形式追加到```<link>、 <script>```中的url
 当某个文件被修改，在构建阶段只会重新计算该文件的hash值而不改变其他文件,并且会自动修改引用了该文件的各个模块的view文件。这样带来的好处：在更新时，非暴力清除所有静态资源文件，充分利用缓存；真正意义上的版本管理。
 
 ### 默认方案
-如果使用gulp-rev + gulp-rev-collector，那么默认的效果如下：
+使用gulp-rev + gulp-rev-collector，那么默认的效果如下：
 ``` bash
 "css/main.css" => "dist/css/main-3d23dfgdf.css"
 "js/main.js" => "dist/js/main-3d23dfgdf.js"
@@ -21,7 +21,7 @@ main-234ft4545.css
 main-5656gdesf.css
 ```
 ### 改进方案
-##### 期望的效果：
+##### 我们期望的效果：
 ```bash
 href="dist/css/main-3d23dfgdf.css" => href="dist/css/main.css?v=3d23dfgdf"
 src="dist/js/main-3d23dfgdf.js" => src="dist/js/main.js?v=3d23dfgdf"
