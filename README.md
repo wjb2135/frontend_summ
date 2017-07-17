@@ -37,7 +37,7 @@ src="dist/images/banner-3d23dfgdf.jpg" => src="dist/images/banner.jpg?v=3d23dfgd
 ```
 3、 gulp-rev-collector根据映射关系表，将<link>、<script>url中的文件名进行替换。
 例如：main.css替换成main.css?v=3d23dfgdf
-##### 如果改进
+##### 下面开始改进
 需要对gulp-rev和gulp-rev-collector进行修改。修改如下：
 修改映射关系表中的属性值的格式：
 打开node_modules\gulp-rev\index.js
