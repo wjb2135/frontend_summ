@@ -51,7 +51,7 @@ src="dist/images/banner-3d23dfgdf.jpg" => src="dist/images/banner.jpg?v=3d23dfgd
 第10行 return filename + '-' + hash + ext;
 改成 return filename + ext;
 ```
-打开node_modules\gulp-rev-collector\index.js
+打开node_modules\gulp-rev-collector\index.js（gulp-rev-collector的版本指定1.0.0）
 ```bash
 第30行 if ( path.basename(json[key]).replace(new RegExp( opts.revSuffix ), '' ) !==  path.basename(key) ) {
 改成 if ( path.basename(json[key]).split('?')[0] !== path.basename(key) ) {
