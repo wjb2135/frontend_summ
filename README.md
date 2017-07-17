@@ -63,7 +63,7 @@ src="dist/images/banner-3d23dfgdf.jpg" => src="dist/images/banner.jpg?v=3d23dfgd
 改成 regexp: new RegExp(  dirRule.dirRX + pattern+'(\\?v=\\w{10})?', 'g' ),
 ```
 ### gulpfile.js配置
-```bash
+```
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
@@ -158,6 +158,7 @@ gulp.task('convertComponentsHtml', function() {
         .pipe(gulp.dest('dist/components/'))
 });
 
+// 生成文件hash字符串值、映射关系表
 gulp.task('source-rev', function() {
     return gulp.src(['dist/**/**/*css', 'dist/**/**/*js'])
         .pipe(rev())
@@ -167,6 +168,7 @@ gulp.task('source-rev', function() {
         .pipe(gulp.dest('src/rev'));
 });
 
+// 根据映射关系表，将页面<link> <script>中url的文件名进行替换
 gulp.task('source-rev-out', function() {
     return gulp.src(['src/rev/rev-manifest.json', 'src/view/**/*.html'])
         .pipe(revCollector())
